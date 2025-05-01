@@ -1,0 +1,216 @@
+.container {
+    padding: 2rem;
+  }
+  
+  .titulo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    align-self: flex-start;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .barraPesquisa {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .inputWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .inputWrapper input {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .iconeDentroInput {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+  }
+  
+  .boxButton {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+  }
+
+  .botaoAcao {
+    background: #007bff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s ease;
+    margin-left: 3px;
+    margin-top: 1px;
+    color: #ffffff;
+  }
+  
+  .botaoAcao:hover {
+    background: #4c43fce7;
+  }
+  
+  .filtroLista {
+    position: absolute;
+    top: 110%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 0;
+    width: 200px;
+    z-index: 10;
+  }
+  
+  .filtroLista li {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+  }
+  
+  .filtroLista li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .filtroSelecionado {
+    margin-bottom: 1rem;
+    font-style: italic;
+    color: #555;
+  }
+  
+  .listaClientes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .clienteItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 10px solid #ffc107;
+    padding: 1rem;
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  
+  .clienteInfo p {
+    margin: 0.2rem 0;
+  }
+  
+  .botoes {
+    display: flex;
+    gap: 0.4rem;
+  }
+  
+  .botoes button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.3rem;
+  }
+  
+  .botoes .info {
+    color: #007bff;
+  }
+  
+  .botoes .editar {
+    color: #ffc107;
+  }
+  
+  .botoes .excluir {
+    color: #dc3545;
+  }
+  
+  
+  .popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1000;
+  }
+  
+  .popup {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .fecharPopup {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+  }
+  
+  .formEditar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .formGroup label {
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .formGroup input {
+    width: 97%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+  
+  .botaoSalvar {
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .botaoSalvar:hover {
+    background-color: #218838;
+  }
+
+  

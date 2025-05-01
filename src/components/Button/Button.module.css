@@ -1,0 +1,17 @@
+.button1 {
+  background: linear-gradient(to right, #3b82f6);
+  padding: 1rem 2rem;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.button1:hover {
+  transform: scale(1.03);
+  background: linear-gradient(to right, #3cb17c, #5dd7a2);
+}

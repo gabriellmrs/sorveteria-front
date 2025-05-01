@@ -1,0 +1,23 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #1f2937;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f3f4f6;
+}

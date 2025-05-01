@@ -1,0 +1,59 @@
+.sidebar {
+    height: 100vh;
+    background-color: #3b82f6;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+  z-index: 1000;
+  }
+  
+  .expanded {
+    width: 200px;
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .menuItem:hover {
+    background-color: #2563eb;
+  }
+  
+  .submenu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .submenuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  
+  .submenuItem:hover {
+    background-color: #1e40af;
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+
+  /* mantém os existentes */

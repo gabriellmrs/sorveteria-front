@@ -1,0 +1,52 @@
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .success {
+    background-color: #22c55e;
+    border-left: 5px solid #16a34a;
+  }
+  
+  .error {
+    background-color: #ef4444;
+    border-left: 5px solid #b91c1c;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .closeBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .closeBtn:hover {
+    background: hsla(0, 2%, 83%, 0.655)
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
