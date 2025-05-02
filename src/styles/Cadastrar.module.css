@@ -1,0 +1,131 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  
+  min-height: 100vh;
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  align-self: flex-start;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+input {
+  background-color: #e5e5e5;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  width: 80%;
+  transition: box-shadow 0.3s ease;
+}
+
+.row input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #6b9ef0;
+}
+
+.row input:hover {
+  outline: none;
+  box-shadow: 0 0 5px #6b9ef0;
+}
+
+
+
+.mensagem {
+  margin-top: 1rem;
+  color: #007243;
+  font-weight: bold;
+}
+
+.option {
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.option:focus {
+  border-color: #0070f3;
+  outline: none;
+  background-color: #fff;
+}
+
+.label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+.historico {
+  margin: 2rem auto 0 auto; /* Centraliza horizontalmente */
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 90%; /* mesma largura do botão */
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+.historico h3 {
+  margin-bottom: 0.8rem;
+  color: #333;
+  text-align: left; /* 🔧 Alinha o título à esquerda */
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.tabela thead {
+  background-color: #f0f4f8;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tabela th,
+.tabela td {
+  text-align: left;
+  padding: 0.6rem 0.4rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.tabela tr:hover {
+  background-color: #f9f9f9;
+}
+
+.tabela td {
+  white-space: nowrap;
+}

@@ -49,16 +49,26 @@ const Sidebar = () => {
       path: '/imprimir',
     },
     {
-      label: 'Consultar',
-      icon: <FaSearch />,
-      key: 'consultar',
-      children: [
-        { label: 'Cliente', path: '/consultar/cliente', icon: <FaUser /> },
-        { label: 'Produto', path: '/consultar/produto', icon: <FaBoxOpen /> },
-        { label: 'Fornecedores', path: '/consultar/fornecedores', icon: <FaHandshake /> },
-        { label: 'Visão Geral', path: '/consultar/visao-geral', icon: <FaSearch /> },
-      ],
+  label: 'Consultar',
+  icon: <FaSearch />,
+  key: 'consultar',
+  children: [
+    { label: 'Cliente', path: '/consultar/cliente', icon: <FaUser /> },
+    { label: 'Produto', path: '/consultar/produto', icon: <FaBoxOpen /> },
+    { label: 'Fornecedores', path: '/consultar/fornecedores', icon: <FaHandshake /> },
+    { label: 'Visão Geral', path: '/consultar/visao-geral', icon: <FaSearch /> },
+    {
+      label: 'Balcão - Venda',
+      path: '/consultar/balcao/venda',
+      icon: <FaCashRegister />,
     },
+    {
+      label: 'Balcão - Saída',
+      path: '/consultar/balcao/saida',
+      icon: <FaFileInvoice />,
+    },
+  ],
+},
     {
       label: 'Vendedores',
       icon: <FaUsers />,

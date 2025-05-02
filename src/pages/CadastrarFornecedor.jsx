@@ -3,7 +3,7 @@ import InputField from '../components/InputField/InputField';
 import Button from '../components/Button/Button';
 import Notification from '../components/Notification/Notification';
 import URL from '../service/url.js';
-import styles from '../styles/CadastrarCliente.module.css';
+import styles from '../styles/Cadastrar.module.css';
 
 const CadastrarFornecedor = () => {
   const [form, setForm] = useState({
