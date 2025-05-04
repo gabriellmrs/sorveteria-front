@@ -13,7 +13,7 @@ const RegistrarVenda = () => {
   });
 
   const [notificacao, setNotificacao] = useState(null);
-  const [vendas, setVendas] = useState([]); // 🆕 Histórico de vendas
+  const [vendas, setVendas] = useState([]); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
