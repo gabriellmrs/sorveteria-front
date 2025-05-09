@@ -9,6 +9,8 @@ import ConsultarProduto from './pages/ConsultarProduto';
 import ConsultarFornecedor from './pages/ConsultarFornecedor';
 import RegistrarVenda from './pages/RegistrarVenda';
 import ConsultarVendas from './pages/ConsultarVendas';
+import RegistrarSaida from './pages/RegistrarSaida';
+import ConsultarSaida from './pages/ConsultarSaida';
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path="/consultar/produto" element={<ConsultarProduto />} />
           <Route path="/consultar/fornecedores" element={<ConsultarFornecedor />} />
           <Route path="/consultar/balcao/venda" element={<ConsultarVendas />} />
+          <Route path="/consultar/balcao/saida" element={<ConsultarSaida />} />
           <Route path="/balcao/venda" element={<RegistrarVenda/>} />
+          <Route path="/balcao/saida" element={<RegistrarSaida/>} />
         </Routes>
       </div>
     </Router>
