@@ -129,3 +129,14 @@ input {
 .tabela td {
   white-space: nowrap;
 }
+
+.erro {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}

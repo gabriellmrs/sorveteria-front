@@ -12,21 +12,42 @@ const RegistrarSaida = () => {
     VALOR: '',
   });
 
+  const [erros, setErros] = useState({});
   const [notificacao, setNotificacao] = useState(null);
   const [saidas, setSaidas] = useState([]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setErros({ ...erros, [e.target.name]: null });
   };
 
   const validarFormulario = () => {
-    if (!form.NOME.trim()) {
-      return { valido: false, titulo: 'Erro de Validação', mensagem: 'O campo nome é obrigatório.' };
+    const novosErros = {};
+    const nome = form.NOME.trim();
+    const descricao = form.DESCRICAO.trim();
+    const valor = form.VALOR;
+
+    if (!nome) {
+      novosErros.NOME = 'O campo "Nome" é obrigatório.';
+    } else if (/\d/.test(nome)) {
+      novosErros.NOME = 'O nome não pode conter números.';
     }
-    if (!form.VALOR || isNaN(parseFloat(form.VALOR))) {
-      return { valido: false, titulo: 'Erro de Validação', mensagem: 'O valor deve ser um número válido.' };
+
+    if (!descricao) {
+      novosErros.DESCRICAO = 'O campo "Descrição" é obrigatório.';
     }
-    return { valido: true };
+
+    if (valor === '') {
+      novosErros.VALOR = 'O campo "Valor" é obrigatório.';
+    } else {
+      const valorNumerico = parseFloat(valor);
+      if (isNaN(valorNumerico) || valorNumerico <= 0) {
+        novosErros.VALOR = 'O valor deve ser um número positivo.';
+      }
+    }
+
+    setErros(novosErros);
+    return Object.keys(novosErros).length === 0;
   };
 
   const carregarSaidas = async () => {
@@ -48,12 +69,11 @@ const RegistrarSaida = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validacao = validarFormulario();
-    if (!validacao.valido) {
+    if (!validarFormulario()) {
       setNotificacao({
         type: 'error',
-        title: validacao.titulo,
-        message: validacao.mensagem,
+        title: 'Erro de Validação',
+        message: 'Corrija os erros nos campos e tente novamente.',
       });
       return;
     }
@@ -77,6 +97,7 @@ const RegistrarSaida = () => {
         });
 
         setForm({ NOME: '', DESCRICAO: '', VALOR: '' });
+        setErros({});
         carregarSaidas();
       } else {
         const errorText = await response.text();
@@ -110,30 +131,39 @@ const RegistrarSaida = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.row}>
-          <InputField
-            label="Nome"
-            name="NOME"
-            value={form.NOME}
-            onChange={handleChange}
-            placeholder="Ex: Compra de Material"
-          />
+          <div className={styles.inputGroup}>
+            <InputField
+              label="Nome"
+              name="NOME"
+              value={form.NOME}
+              onChange={handleChange}
+              placeholder="Fornecedor"
+            />
+            {erros.NOME && <p className={styles.erro}>{erros.NOME}</p>}
+          </div>
 
-          <InputField
-            label="Valor (R$)"
-            name="VALOR"
-            value={form.VALOR}
-            onChange={handleChange}
-            placeholder="Ex: 50.00"
-          />
+          <div className={styles.inputGroup}>
+            <InputField
+              label="Valor (R$)"
+              name="VALOR"
+              value={form.VALOR}
+              onChange={handleChange}
+              placeholder="Ex: 50.00"
+            />
+            {erros.VALOR && <p className={styles.erro}>{erros.VALOR}</p>}
+          </div>
         </div>
 
-        <InputField
-          label="Descrição"
-          name="DESCRICAO"
-          value={form.DESCRICAO}
-          onChange={handleChange}
-          placeholder="Descrição opcional"
-        />
+        <div className={styles.inputGroup}>
+          <InputField
+            label="Descrição"
+            name="DESCRICAO"
+            value={form.DESCRICAO}
+            onChange={handleChange}
+            placeholder="Descrição do gasto"
+          />
+          {erros.DESCRICAO && <p className={styles.erro}>{erros.DESCRICAO}</p>}
+        </div>
 
         <Button type="submit">REGISTRAR</Button>
       </form>
