@@ -95,52 +95,6 @@
     color: #555;
   }
   
-  .listaClientes {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .clienteItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 10px solid #ffc107;
-    padding: 1rem;
-    background: #fafafa;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  
-  .clienteInfo p {
-    margin: 0.2rem 0;
-  }
-  
-  .botoes {
-    display: flex;
-    gap: 0.4rem;
-  }
-  
-  .botoes button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    padding: 0.3rem;
-  }
-  
-  .botoes .info {
-    color: #007bff;
-  }
-  
-  .botoes .editar {
-    color: #ffc107;
-  }
-  
-  .botoes .excluir {
-    color: #dc3545;
-  }
-  
   
   .popupOverlay {
     position: fixed;

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaSearch, FaInfoCircle, FaEdit, FaTrash, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 import URL from '../service/url';
 import styles from '../styles/Consultar.module.css';
+import ItemList from '../components/ItemList/ItemList'
 
 const ConsultarProduto = () => {
     const [produtos, setProdutos] = useState([]);
@@ -91,9 +92,9 @@ const ConsultarProduto = () => {
                     valor: formData.VALOR,
                 }),
             });
-    
+
             if (!res.ok) throw new Error('Erro ao atualizar produto');
-    
+
             alert('Produto atualizado com sucesso!');
             setPopup({ tipo: '', produto: null });
             fetchTodosProdutos();  // Atualiza a lista de produtos
@@ -102,7 +103,7 @@ const ConsultarProduto = () => {
             console.error(err);  // Mostra o erro no console
         }
     };
-    
+
 
     const renderPopup = () => {
         if (!popup.tipo || !popup.produto) return null;
@@ -191,41 +192,22 @@ const ConsultarProduto = () => {
                         onClick={handleVoltarListaClick}
                         title="Voltar à Lista"
                     >
-                        ↩ 
+                        ↩
                     </button>
                 </div>
             </div>
 
-            <div className={styles.listaClientes}>
-                {produtos.map((produto) => (
-                    <div key={produto.ID} className={styles.clienteItem}>
-                        <div className={styles.clienteInfo}>
-                            <p><strong>Nome:</strong> {produto.NOME}</p>
-                            <p><strong>Preço:</strong> R$ {produto.VALOR}</p>
-                        </div>
-                        <div className={styles.botoes}>
-                            <button
-                                className={styles.info}
-                                onClick={() => setPopup({ tipo: 'detalhes', produto })}
-                            >
-                                <FaInfoCircle />
-                            </button>
-                            <button
-                                className={styles.editar}
-                                onClick={() => setPopup({ tipo: 'editar', produto })}
-                            >
-                                <FaEdit />
-                            </button>
-                            <button
-                                className={styles.excluir}
-                                onClick={() => handleExcluirProduto(produto.ID)}
-                            >
-                                <FaTrash />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ItemList
+                itens={produtos}
+                campos={[
+                    { key: 'NOME', label: 'Nome' },
+                    { key: 'VALOR', label: 'Preço', format: (v) => `R$ ${v}` },
+                ]}
+                onDetalhes={(produto) => setPopup({ tipo: 'detalhes', produto })}
+                onEditar={(produto) => setPopup({ tipo: 'editar', produto })}
+                onExcluir={handleExcluirProduto}
+            />
+
 
             {renderPopup()}
         </div>

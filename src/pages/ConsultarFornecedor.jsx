@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaSearch, FaInfoCircle, FaEdit, FaTrash, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 import URL from '../service/url';
 import styles from '../styles/Consultar.module.css';
+import ItemList from '../components/ItemList/ItemList'
 
 const ConsultarFornecedor = () => {
     const [fornecedores, setFornecedores] = useState([]);
@@ -189,41 +190,22 @@ const ConsultarFornecedor = () => {
                         onClick={handleVoltarListaClick}
                         title="Voltar à Lista"
                     >
-                        ↩ 
+                        ↩
                     </button>
                 </div>
             </div>
 
-            <div className={styles.listaClientes}>
-                {fornecedores.map((fornecedor) => (
-                    <div key={fornecedor.ID} className={styles.clienteItem}>
-                        <div className={styles.clienteInfo}>
-                            <p><strong>Nome:</strong> {fornecedor.NOME}</p>
-                            <p><strong>Telefone:</strong> {fornecedor.TELEFONE}</p>
-                        </div>
-                        <div className={styles.botoes}>
-                            <button
-                                className={styles.info}
-                                onClick={() => setPopup({ tipo: 'detalhes', fornecedor })}
-                            >
-                                <FaInfoCircle />
-                            </button>
-                            <button
-                                className={styles.editar}
-                                onClick={() => setPopup({ tipo: 'editar', fornecedor })}
-                            >
-                                <FaEdit />
-                            </button>
-                            <button
-                                className={styles.excluir}
-                                onClick={() => handleExcluirFornecedor(fornecedor.ID)}
-                            >
-                                <FaTrash />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ItemList
+                itens={fornecedores}
+                campos={[
+                    { key: 'NOME', label: 'Nome' },
+                    { key: 'TELEFONE', label: 'Telefone' },
+                ]}
+                onDetalhes={(fornecedor) => setPopup({ tipo: 'detalhes', fornecedor })}
+                onEditar={(fornecedor) => setPopup({ tipo: 'editar', fornecedor })}
+                onExcluir={handleExcluirFornecedor}
+            />
+
 
             {renderPopup()}
         </div>

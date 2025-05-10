@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaSearch, FaFilter, FaInfoCircle, FaEdit, FaTrash, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaFilter, FaTimes } from 'react-icons/fa';
 import URL from '../service/url';
 import styles from '../styles/Consultar.module.css';
+import ItemList from '../components/ItemList/ItemList'
 
 const ConsultarCliente = () => {
     //const URL = 'http://localhost:5000';
@@ -251,38 +252,19 @@ const ConsultarCliente = () => {
                 </div>
             )}
 
-            <div className={styles.listaClientes}>
-                {clientes.map((cliente) => (
-                    <div key={cliente.ID} className={styles.clienteItem}>
-                        <div className={styles.clienteInfo}>
-                            <p><strong>Nome:</strong> {cliente.NOME}</p>
-                            <p><strong>Cidade:</strong> {cliente.CIDADE}</p>
-                            <p><strong>Bairro:</strong> {cliente.BAIRRO}</p>
-                            <p><strong>CPF/CNPJ:</strong> {cliente.CNPJ_CPF}</p>
-                        </div>
-                        <div className={styles.botoes}>
-                            <button
-                                className={styles.info}
-                                onClick={() => setPopup({ tipo: 'detalhes', cliente })}
-                            >
-                                <FaInfoCircle />
-                            </button>
-                            <button
-                                className={styles.editar}
-                                onClick={() => setPopup({ tipo: 'editar', cliente })}
-                            >
-                                <FaEdit />
-                            </button>
-                            <button
-                                className={styles.excluir}
-                                onClick={() => handleExcluirCliente(cliente.ID)}
-                            >
-                                <FaTrash />
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <ItemList
+                itens={clientes}
+                campos={[
+                    { key: 'NOME', label: 'Nome' },
+                    { key: 'CIDADE', label: 'Cidade' },
+                    { key: 'BAIRRO', label: 'Bairro' },
+                    { key: 'CNPJ_CPF', label: 'CPF/CNPJ' },
+                ]}
+                onDetalhes={(cliente) => setPopup({ tipo: 'detalhes', cliente })}
+                onEditar={(cliente) => setPopup({ tipo: 'editar', cliente })}
+                onExcluir={handleExcluirCliente}
+            />
+
 
             {renderPopup()}
         </div>
