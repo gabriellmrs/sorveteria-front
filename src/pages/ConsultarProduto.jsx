@@ -1,109 +1,22 @@
-import { useEffect, useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
-import URL from '../service/url';
 import styles from '../styles/Consultar.module.css';
-import ItemList from '../components/ItemList/ItemList'
+import ItemList from '../components/ItemList/ItemList';
+import useProdutos from '../hooks/ConsultarProdutos';
 
 const ConsultarProduto = () => {
-    const [produtos, setProdutos] = useState([]);
-    const [busca, setBusca] = useState('');
-    const [popup, setPopup] = useState({ tipo: '', produto: null });
-    const [formData, setFormData] = useState({});
-
-    useEffect(() => {
-        fetchTodosProdutos();
-    }, []);
-
-    const fetchTodosProdutos = async () => {
-        try {
-            const res = await fetch(`${URL}/produto`);
-            const data = await res.json();
-            setProdutos(data);
-        } catch (error) {
-            console.error('Erro ao buscar produtos:', error);
-        }
-    };
-
-    const handleBuscarClick = async () => {
-        if (!busca.trim()) {
-            alert("Digite algo para buscar.");
-            return;
-        }
-
-        try {
-            const res = await fetch(`${URL}/produto/${encodeURIComponent(busca)}`);
-            if (!res.ok) {
-                const errorData = await res.json();
-                alert(errorData.message || 'Erro na busca');
-                return;
-            }
-
-            const data = await res.json();
-            if (!data || (Array.isArray(data) && data.length === 0)) {
-                alert("Nenhum produto encontrado.");
-                return;
-            }
-
-            setProdutos(Array.isArray(data) ? data : [data]);
-        } catch (error) {
-            console.error('Erro ao buscar produto:', error);
-            alert('Erro ao buscar produto');
-        }
-    };
-
-    const handleVoltarListaClick = () => {
-        setBusca('');
-        fetchTodosProdutos();
-    };
-
-    const handleExcluirProduto = async (id) => {
-        const confirm = window.confirm("Tem certeza que deseja excluir este produto?");
-        if (!confirm) return;
-
-        try {
-            const res = await fetch(`${URL}/produto/${id}`, {
-                method: 'DELETE'
-            });
-
-            if (!res.ok) throw new Error("Erro ao excluir produto");
-
-            alert("Produto excluído com sucesso!");
-            fetchTodosProdutos();
-        } catch (error) {
-            alert("Erro ao excluir produto");
-        }
-    };
-
-    const handleEditChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    const handleEditSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const res = await fetch(`${URL}/produto/${formData.ID}`, {  // ID na URL
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    nome: formData.NOME,
-                    valor: formData.VALOR,
-                }),
-            });
-
-            if (!res.ok) throw new Error('Erro ao atualizar produto');
-
-            alert('Produto atualizado com sucesso!');
-            setPopup({ tipo: '', produto: null });
-            fetchTodosProdutos();  // Atualiza a lista de produtos
-        } catch (err) {
-            alert('Erro ao atualizar produto');
-            console.error(err);  // Mostra o erro no console
-        }
-    };
-
+    const {
+        produtos,
+        busca,
+        setBusca,
+        popup,
+        setPopup,
+        formData,
+        handleEditChange,
+        buscarProduto,
+        excluirProduto,
+        submitEdicao,
+        fetchTodosProdutos
+    } = useProdutos();
 
     const renderPopup = () => {
         if (!popup.tipo || !popup.produto) return null;
@@ -130,7 +43,7 @@ const ConsultarProduto = () => {
                     {popup.tipo === 'editar' && (
                         <>
                             <h3>Editar Produto</h3>
-                            <form onSubmit={handleEditSubmit} className={styles.formEditar}>
+                            <form onSubmit={submitEdicao} className={styles.formEditar}>
                                 <div className={styles.formGroup}>
                                     <label>Nome</label>
                                     <input
@@ -157,12 +70,6 @@ const ConsultarProduto = () => {
         );
     };
 
-    useEffect(() => {
-        if (popup.tipo === 'editar' && popup.produto) {
-            setFormData({ ...popup.produto });
-        }
-    }, [popup]);
-
     return (
         <div className={styles.container}>
             <h2 className={styles.titulo}>Consultar Produto</h2>
@@ -181,7 +88,7 @@ const ConsultarProduto = () => {
                 <div className={styles.boxButton}>
                     <button
                         className={styles.botaoAcao}
-                        onClick={handleBuscarClick}
+                        onClick={buscarProduto}
                         title="Buscar"
                     >
                         <FaSearch />
@@ -189,7 +96,10 @@ const ConsultarProduto = () => {
 
                     <button
                         className={styles.botaoAcao}
-                        onClick={handleVoltarListaClick}
+                        onClick={() => {
+                            setBusca('');
+                            fetchTodosProdutos();
+                        }}
                         title="Voltar à Lista"
                     >
                         ↩
@@ -205,9 +115,8 @@ const ConsultarProduto = () => {
                 ]}
                 onDetalhes={(produto) => setPopup({ tipo: 'detalhes', produto })}
                 onEditar={(produto) => setPopup({ tipo: 'editar', produto })}
-                onExcluir={handleExcluirProduto}
+                onExcluir={excluirProduto}
             />
-
 
             {renderPopup()}
         </div>

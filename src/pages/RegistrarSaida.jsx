@@ -52,7 +52,7 @@ const RegistrarSaida = () => {
 
   const carregarSaidas = async () => {
     try {
-      const response = await fetch(`${URL}/saida`);
+      const response = await fetch(`${URL}/saida/dia`);
       if (response.ok) {
         const data = await response.json();
         setSaidas(data);
