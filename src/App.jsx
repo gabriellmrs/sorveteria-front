@@ -11,6 +11,8 @@ import RegistrarVenda from './pages/RegistrarVenda';
 import ConsultarVendas from './pages/ConsultarVendas';
 import RegistrarSaida from './pages/RegistrarSaida';
 import ConsultarSaida from './pages/ConsultarSaida';
+import CadastrarVendaCliente from './pages/CadastrarVendaCliente';
+import ConsultarVendaAtacado from './pages/ConsultarVendaAtacado';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/consultar/balcao/saida" element={<ConsultarSaida />} />
           <Route path="/balcao/venda" element={<RegistrarVenda/>} />
           <Route path="/balcao/saida" element={<RegistrarSaida/>} />
+          <Route path="/venda-atacado" element={<CadastrarVendaCliente/>} />
+          <Route path="/consultar/atacado" element={<ConsultarVendaAtacado />} />
         </Routes>
       </div>
     </Router>

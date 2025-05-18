@@ -65,6 +65,7 @@ const Sidebar = () => {
         { label: 'Produto', path: '/consultar/produto', icon: <FaBoxOpen /> },
         { label: 'Fornecedores', path: '/consultar/fornecedores', icon: <FaHandshake /> },
         { label: 'Visão Geral', path: '/consultar/visao-geral', icon: <FaSearch /> },
+        { label: 'Atacado', path: '/consultar/atacado', icon: <FaCashRegister /> },
         {
           label: 'Balcão',
           icon: <FaStore />,

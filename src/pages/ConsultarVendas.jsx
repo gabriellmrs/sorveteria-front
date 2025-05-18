@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../styles/ConsultarVendas.module.css';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { useConsultarVendas } from '../hooks/ConsultarVenda';
