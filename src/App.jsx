@@ -13,6 +13,8 @@ import RegistrarSaida from './pages/RegistrarSaida';
 import ConsultarSaida from './pages/ConsultarSaida';
 import CadastrarVendaCliente from './pages/CadastrarVendaCliente';
 import ConsultarVendaAtacado from './pages/ConsultarVendaAtacado';
+import CadastrarVendedor from './pages/CadastrarVendedor';
+import ConsultarVendedor from './pages/ConsultarVendedor';
 
 function App() {
   return (
@@ -24,9 +26,11 @@ function App() {
           <Route path="/cadastrar-cliente" element={<CadastrarCliente />} />
           <Route path="/cadastrar-produto" element={<CadastrarProduto />} />
           <Route path="/cadastrar-fornecedor" element={<CadastrarFornecedor />} />
+          <Route path="/cadastrar-carrinho" element={<CadastrarVendedor />} />
           <Route path="/consultar/cliente" element={<ConsultarCliente />} />
           <Route path="/consultar/produto" element={<ConsultarProduto />} />
           <Route path="/consultar/fornecedores" element={<ConsultarFornecedor />} />
+          <Route path="/consultar/carrinho" element={<ConsultarVendedor />} />
           <Route path="/consultar/balcao/venda" element={<ConsultarVendas />} />
           <Route path="/consultar/balcao/saida" element={<ConsultarSaida />} />
           <Route path="/balcao/venda" element={<RegistrarVenda/>} />

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Sidebar.module.css';
 import { Link } from 'react-router-dom';
+import URL from '../../service/url';  
 import {
   FaBars, FaPlus, FaUserPlus, FaBoxOpen, FaTruck,
   FaStore, FaCashRegister, FaFileInvoice, FaSearch,
@@ -13,6 +14,24 @@ const Sidebar = () => {
   const [hovered, setHovered] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [openSubMenus, setOpenSubMenus] = useState({});
+  const [vendedores, setVendedores] = useState([]);
+
+  
+  useEffect(() => {
+    const fetchVendedores = async () => {
+      try {
+        const res = await fetch(`${URL}/vendedor`);
+        if (!res.ok) throw new Error('Erro ao buscar vendedores');
+        const data = await res.json();
+        setVendedores(data);
+      } catch (error) {
+        console.error(error);
+        setVendedores([]);
+      }
+    };
+
+    fetchVendedores();
+  }, []);
 
   const toggleMenu = (menu) => {
     setOpenMenu((prev) => (prev === menu ? null : menu));
@@ -66,6 +85,7 @@ const Sidebar = () => {
         { label: 'Fornecedores', path: '/consultar/fornecedores', icon: <FaHandshake /> },
         { label: 'Visão Geral', path: '/consultar/visao-geral', icon: <FaSearch /> },
         { label: 'Atacado', path: '/consultar/atacado', icon: <FaCashRegister /> },
+        { label: 'Carrinho', path: '/consultar/carrinho', icon: <FaShippingFast /> },
         {
           label: 'Balcão',
           icon: <FaStore />,
@@ -82,12 +102,11 @@ const Sidebar = () => {
       label: 'Vendedores',
       icon: <FaUsers />,
       key: 'vendedores',
-      children: [
-        { label: 'Antônio', path: '/vendedores/antonio', icon: <FaUser /> },
-        { label: 'Dinalva', path: '/vendedores/dinalva', icon: <FaUser /> },
-        { label: 'Daniel', path: '/vendedores/daniel', icon: <FaUser /> },
-        { label: 'Plabo', path: '/vendedores/plabo', icon: <FaUser /> },
-      ],
+      children: vendedores.map((vendedor) => ({
+        label: vendedor.NOME,
+        path: `/vendedores/${vendedor.NOME.toLowerCase()}`,
+        icon: <FaUser />
+      })),
     },
   ];
 
