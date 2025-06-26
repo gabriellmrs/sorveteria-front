@@ -15,6 +15,7 @@ import CadastrarVendaCliente from './pages/CadastrarVendaCliente';
 import ConsultarVendaAtacado from './pages/ConsultarVendaAtacado';
 import CadastrarVendedor from './pages/CadastrarVendedor';
 import ConsultarVendedor from './pages/ConsultarVendedor';
+import Carrinho from './pages/Carrinho';
 
 function App() {
   return (
@@ -33,10 +34,11 @@ function App() {
           <Route path="/consultar/carrinho" element={<ConsultarVendedor />} />
           <Route path="/consultar/balcao/venda" element={<ConsultarVendas />} />
           <Route path="/consultar/balcao/saida" element={<ConsultarSaida />} />
-          <Route path="/balcao/venda" element={<RegistrarVenda/>} />
-          <Route path="/balcao/saida" element={<RegistrarSaida/>} />
-          <Route path="/venda-atacado" element={<CadastrarVendaCliente/>} />
+          <Route path="/balcao/venda" element={<RegistrarVenda />} />
+          <Route path="/balcao/saida" element={<RegistrarSaida />} />
+          <Route path="/venda-atacado" element={<CadastrarVendaCliente />} />
           <Route path="/consultar/atacado" element={<ConsultarVendaAtacado />} />
+          <Route path="/vendedores/:nome" element={<Carrinho />} />
         </Routes>
       </div>
     </Router>

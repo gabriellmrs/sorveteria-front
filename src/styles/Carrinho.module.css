@@ -1,0 +1,148 @@
+.container {
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f1f4f9;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.button {
+  padding: 12px 20px;
+  background-color: #2d8cf0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #1e6fd9;
+  transform: translateY(-2px);
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  width: 95%;
+  max-width: 640px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  animation: popupFade 0.3s ease;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.inputGroup input,
+.inputGroup select {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.list {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+  background-color: #2d8cf0;
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+}
+
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f7fafd;
+}
+
+.totalPagar {
+  margin-top: 25px;
+  font-size: 1.25em;
+  color: #219653;
+  font-weight: bold;
+  background-color: #e9f5ec;
+  padding: 12px 18px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+h3 {
+  color: #222;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+h4 {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.txt {
+  color: #555;
+  font-size: 15px;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}

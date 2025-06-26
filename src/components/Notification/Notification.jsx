@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 
 const Notification = ({ type, title, message, onClose }) => {
   useEffect(() => {
-    const timer = setTimeout(onClose, 10000);
+    const timer = setTimeout(onClose, 100000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
