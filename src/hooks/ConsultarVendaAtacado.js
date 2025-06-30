@@ -17,11 +17,17 @@ const useConsultarVendaAtacado = () => {
     const [formData, setFormData] = useState({ valorVenda: '' });
     const [notification, setNotification] = useState(null);
 
+    const token = localStorage.getItem('token');
+
+
     const buscarVendas = async () => {
         try {
             const response = await fetch(`${URL}/v-cliente/filtro`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify(filtros),
             });
             if (!response.ok) throw new Error('Erro ao buscar vendas');
@@ -54,6 +60,9 @@ const useConsultarVendaAtacado = () => {
             try {
                 const response = await fetch(`${URL}/v-cliente/${id}`, {
                     method: 'DELETE',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 });
                 if (!response.ok) throw new Error('Erro ao excluir venda');
                 setNotification({
@@ -82,7 +91,10 @@ const useConsultarVendaAtacado = () => {
         try {
             const response = await fetch(`${URL}/v-cliente/${popup.venda.ID}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify({ valorCompra: formData.valorVenda }),
             });
             if (!response.ok) throw new Error('Erro ao atualizar venda');

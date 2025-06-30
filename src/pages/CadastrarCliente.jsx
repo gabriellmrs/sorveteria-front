@@ -6,7 +6,6 @@ import URL from '../service/url.js'
 import styles from '../styles/Cadastrar.module.css';
 
 const CadastrarCliente = () => {
-  //const URL = 'http://localhost:5000';
 
   const [form, setForm] = useState({
     NOME: '',
@@ -20,6 +19,8 @@ const CadastrarCliente = () => {
 
   const [notificacao, setNotificacao] = useState(null);
 
+  const token = localStorage.getItem('token');
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -28,15 +29,15 @@ const CadastrarCliente = () => {
     if (!form.NOME.trim()) {
       return { valido: false, titulo: 'Erro de Validação', mensagem: 'O campo nome não pode estar vazio.' };
     }
-  
+
     if (/[A-Za-z]/.test(form.CNPJ_CPF)) {
       return { valido: false, titulo: 'Erro de Validação', mensagem: 'O campo CNPJ/CPF não pode conter letras.' };
     }
-  
+
     if (/[A-Za-z]/.test(form.TELEFONE)) {
       return { valido: false, titulo: 'Erro de Validação', mensagem: 'O campo telefone não pode conter letras.' };
     }
-  
+
     return { valido: true };
   };
 
@@ -56,7 +57,10 @@ const CadastrarCliente = () => {
     try {
       const response = await fetch(`${URL}/clientes`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(form),
       });
 

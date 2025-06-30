@@ -12,13 +12,19 @@ export const useClientes = () => {
 
   const filtros = ['Nome A-Z', 'Cidade', 'Bairro', 'cpf_cnpj'];
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     fetchTodosClientes();
   }, []);
 
   const fetchTodosClientes = async () => {
     try {
-      const res = await fetch(`${URL}/clientes`);
+      const res = await fetch(`${URL}/clientes`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setClientes(data);
     } catch (error) {
@@ -58,7 +64,10 @@ export const useClientes = () => {
     try {
       const res = await fetch(`${URL}${filtro.endpoint}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({ [filtro.bodyKey]: busca }),
       });
 
@@ -74,7 +83,11 @@ export const useClientes = () => {
     if (!confirm) return;
 
     try {
-      const res = await fetch(`${URL}/clientes/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${URL}/clientes/${id}`, {
+        method: 'DELETE', headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (!res.ok) throw new Error();
       alert("Cliente excluído com sucesso!");
       fetchTodosClientes();
@@ -93,7 +106,10 @@ export const useClientes = () => {
     try {
       const res = await fetch(`${URL}/clientes/${formData.ID}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(formData),
       });
 

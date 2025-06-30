@@ -15,10 +15,16 @@ const RegistrarVendaCliente = () => {
   const [vendas, setVendas] = useState([]);
   const [notificacao, setNotificacao] = useState(null);
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const response = await fetch(`${URL}/clientes`);
+        const response = await fetch(`${URL}/clientes`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const data = await response.json();
         setClientes(data);
       } catch (err) {
@@ -36,7 +42,11 @@ const RegistrarVendaCliente = () => {
 
   const carregarVendas = async () => {
     try {
-      const response = await fetch(`${URL}/v-cliente`);
+      const response = await fetch(`${URL}/v-cliente`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (response.ok) {
         const data = await response.json();
         setVendas(data);
@@ -86,7 +96,10 @@ const RegistrarVendaCliente = () => {
     try {
       const response = await fetch(`${URL}/v-cliente`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({
           nome: form.NOME,
           valor: parseFloat(form.VALOR),

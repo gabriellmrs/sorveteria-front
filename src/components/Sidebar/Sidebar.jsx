@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Sidebar.module.css';
 import { Link } from 'react-router-dom';
-import URL from '../../service/url';  
+import URL from '../../service/url';
 import {
   FaBars, FaPlus, FaUserPlus, FaBoxOpen, FaTruck,
   FaStore, FaCashRegister, FaFileInvoice, FaSearch,
@@ -16,11 +16,16 @@ const Sidebar = () => {
   const [openSubMenus, setOpenSubMenus] = useState({});
   const [vendedores, setVendedores] = useState([]);
 
-  
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     const fetchVendedores = async () => {
       try {
-        const res = await fetch(`${URL}/vendedor`);
+        const res = await fetch(`${URL}/vendedor`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         if (!res.ok) throw new Error('Erro ao buscar vendedores');
         const data = await res.json();
         setVendedores(data);

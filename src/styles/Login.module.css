@@ -1,0 +1,257 @@
+/* Variáveis para fácil modificação */
+:root {
+  --primary-color: #5b86e5; /* Um azul mais vibrante */
+  --secondary-color: #36d1dc; /* Um azul/ciano complementar */
+  --text-color: #333;
+  --light-text-color: #666;
+  --background-light: #f8f9fa;
+  --card-background: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --error-color: #e74c3c;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); /* Gradiente de fundo */
+  font-family: 'Inter', sans-serif; /* Fonte moderna */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.loginCard {
+  background-color: var(--card-background);
+  padding: 45px 35px;
+  border-radius: 20px; /* Bordas mais arredondadas */
+  box-shadow: 0 15px 30px var(--shadow-color); /* Sombra mais pronunciada e suave */
+  width: 100%;
+  max-width: 420px; /* Um pouco maior para acomodar mais elementos */
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Espaçamento entre os elementos */
+  animation: fadeIn 0.8s ease-out; /* Animação de entrada */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  color: var(--text-color);
+  margin-bottom: 5px; /* Menos margem para o subtítulo */
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: var(--light-text-color);
+  margin-bottom: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* Espaçamento entre os inputs */
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-light);
+  border-radius: 10px; /* Bordas arredondadas nos inputs */
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para foco */
+}
+
+.inputGroup:focus-within {
+  border-color: var(--primary-color); /* Cor ao focar */
+  box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2); /* Sombra suave ao focar */
+}
+
+.inputGroup input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 17px;
+  padding-left: 12px; /* Mais espaço para o ícone */
+  color: var(--text-color);
+}
+
+.inputGroup input::placeholder {
+  color: var(--light-text-color);
+  opacity: 0.8;
+}
+
+.icon {
+  font-size: 20px; /* Ícones um pouco maiores */
+  color: var(--light-text-color);
+  min-width: 20px; /* Garante que o ícone não encolha */
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--light-text-color);
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.rememberMe input[type="checkbox"] {
+  accent-color: var(--primary-color); /* Cor do checkbox */
+}
+
+.forgotPassword {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgotPassword:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.button {
+  padding: 15px;
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%); /* Gradiente no botão */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+  transform: translateY(-2px); /* Efeito de "levitar" */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.erro {
+  color: var(--error-color);
+  font-size: 14px;
+  text-align: center;
+  margin-top: -10px; /* Ajusta a posição */
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--light-text-color);
+  font-size: 14px;
+  margin: 15px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider:not(:empty)::before {
+  margin-right: .5em;
+}
+
+.divider:not(:empty)::after {
+  margin-left: .5em;
+}
+
+.socialLogin {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-light);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  flex: 1; /* Para ocupar o espaço disponível */
+}
+
+.socialButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.socialButton.google {
+  color: #dd4b39; /* Cor do Google */
+  border-color: #dd4b39;
+}
+.socialButton.google:hover {
+  background-color: #dd4b39;
+  color: white;
+}
+
+.socialButton.github {
+  color: #333; /* Cor do GitHub */
+  border-color: #333;
+}
+.socialButton.github:hover {
+  background-color: #333;
+  color: white;
+}
+
+
+.socialIcon {
+  font-size: 20px;
+}
+
+.signupText {
+  text-align: center;
+  font-size: 15px;
+  color: var(--light-text-color);
+  margin-top: 15px;
+}
+
+.signupLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signupLink:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}

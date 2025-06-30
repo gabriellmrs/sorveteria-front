@@ -7,13 +7,20 @@ const useProdutos = () => {
     const [popup, setPopup] = useState({ tipo: '', produto: null });
     const [formData, setFormData] = useState({});
 
+    // Pega o token do localStorage
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         fetchTodosProdutos();
     }, []);
 
     const fetchTodosProdutos = async () => {
         try {
-            const res = await fetch(`${URL}/produto`);
+            const res = await fetch(`${URL}/produto`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const data = await res.json();
             setProdutos(data);
         } catch (error) {
@@ -28,7 +35,12 @@ const useProdutos = () => {
         }
 
         try {
-            const res = await fetch(`${URL}/produto/${encodeURIComponent(busca)}`);
+            const res = await fetch(`${URL}/produto/${encodeURIComponent(busca)}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
             if (!res.ok) {
                 const errorData = await res.json();
                 alert(errorData.message || 'Erro na busca');
@@ -55,6 +67,9 @@ const useProdutos = () => {
         try {
             const res = await fetch(`${URL}/produto/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             if (!res.ok) throw new Error("Erro ao excluir produto");
@@ -78,6 +93,7 @@ const useProdutos = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     nome: formData.NOME,

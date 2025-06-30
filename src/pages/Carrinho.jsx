@@ -15,9 +15,15 @@ const Carrinho = () => {
     const [idSaidaAtual, setIdSaidaAtual] = useState(null);
     const [produtosDisponiveis, setProdutosDisponiveis] = useState([]);
 
+    const token = localStorage.getItem('token');
+
     const buscarRetorno = async () => {
         try {
-            const response = await fetch(`${URL}/carrinho/hoje/${nome}`);
+            const response = await fetch(`${URL}/carrinho/hoje/${nome}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (response.ok) {
                 const data = await response.json();
                 setRetornos(data);
@@ -26,7 +32,11 @@ const Carrinho = () => {
                 setTotalPagar(0);
             }
 
-            const totalRes = await fetch(`${URL}/carrinho/total-hoje/${nome}`);
+            const totalRes = await fetch(`${URL}/carrinho/total-hoje/${nome}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (totalRes.ok) {
                 const totalData = await totalRes.json();
                 setTotalPagar(totalData.total_a_pagar);
@@ -40,7 +50,11 @@ const Carrinho = () => {
 
     const buscarProdutos = async () => {
         try {
-            const res = await fetch(`${URL}/produto`);
+            const res = await fetch(`${URL}/produto`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const data = await res.json();
             setProdutosDisponiveis(data);
         } catch (err) {
@@ -50,7 +64,11 @@ const Carrinho = () => {
 
     const criarOuObterSaidaDoDia = async () => {
         try {
-            const checkSaidaRes = await fetch(`${URL}/carrinho/${nome}/saida-hoje`);
+            const checkSaidaRes = await fetch(`${URL}/carrinho/${nome}/saida-hoje`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             if (checkSaidaRes.ok) {
                 const data = await checkSaidaRes.json();
                 setIdSaidaAtual(data.idSaida);
@@ -58,7 +76,10 @@ const Carrinho = () => {
             } else if (checkSaidaRes.status === 404) {
                 const response = await fetch(`${URL}/carrinho/${nome}`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    },
                     body: JSON.stringify({ nomeVendedor: nome }),
                 });
                 const data = await response.json();
@@ -79,6 +100,9 @@ const Carrinho = () => {
         try {
             const response = await fetch(`${URL}/carrinho/${idSaidaAtual}`, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             if (response.ok) {
@@ -105,7 +129,10 @@ const Carrinho = () => {
 
                 await fetch(`${URL}/carrinho/${idSaidaAtual}/produtos`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
                     body: JSON.stringify({
                         produto: p.produto,
                         quantidade_saida: p.quantidade,
@@ -128,7 +155,10 @@ const Carrinho = () => {
         try {
             const response = await fetch(`${URL}/carrinho/${nome}/retorno-produto`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify({
                     produto: produtoRetorno.nomeProduto,
                     quantidadeRetorno: Number(produtoRetorno.quantidadeRetorno),
@@ -220,11 +250,11 @@ const Carrinho = () => {
                                 />
                             </div>
                         ))}
-                    <div className={styles.buttonRow}>
-                        <button className={styles.button} onClick={adicionarProdutoSaida}>Adicionar Mais</button>
-                        <button className={styles.button} onClick={enviarProdutosSaida}>Confirmar Saída</button>
-                        <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => setShowModalSaida(false)}>Cancelar</button>
-                    </div>
+                        <div className={styles.buttonRow}>
+                            <button className={styles.button} onClick={adicionarProdutoSaida}>Adicionar Mais</button>
+                            <button className={styles.button} onClick={enviarProdutosSaida}>Confirmar Saída</button>
+                            <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => setShowModalSaida(false)}>Cancelar</button>
+                        </div>
                     </div>
 
                 </div>
@@ -257,8 +287,8 @@ const Carrinho = () => {
                             />
                         </div>
                         <div className={styles.buttonRow}>
-                        <button className={styles.button} onClick={enviarRetornoProduto}>Confirmar Retorno</button>
-                        <button className={`${styles.button} ${styles.deleteButton}`}  onClick={() => setShowModalRetorno(false)}>Cancelar</button>
+                            <button className={styles.button} onClick={enviarRetornoProduto}>Confirmar Retorno</button>
+                            <button className={`${styles.button} ${styles.deleteButton}`} onClick={() => setShowModalRetorno(false)}>Cancelar</button>
                         </div>
                     </div>
                 </div>

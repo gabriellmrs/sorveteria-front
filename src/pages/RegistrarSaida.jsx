@@ -16,6 +16,8 @@ const RegistrarSaida = () => {
   const [notificacao, setNotificacao] = useState(null);
   const [saidas, setSaidas] = useState([]);
 
+  const token = localStorage.getItem('token');
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErros({ ...erros, [e.target.name]: null });
@@ -52,7 +54,11 @@ const RegistrarSaida = () => {
 
   const carregarSaidas = async () => {
     try {
-      const response = await fetch(`${URL}/saida/dia`);
+      const response = await fetch(`${URL}/saida/dia`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (response.ok) {
         const data = await response.json();
         setSaidas(data);
@@ -81,7 +87,10 @@ const RegistrarSaida = () => {
     try {
       const response = await fetch(`${URL}/saida`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({
           nome: form.NOME.trim(),
           descricao: form.DESCRICAO.trim(),

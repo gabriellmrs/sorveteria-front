@@ -13,6 +13,8 @@ const CadastrarFornecedor = () => {
 
   const [notificacao, setNotificacao] = useState(null);
 
+  const token = localStorage.getItem('token');
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -45,7 +47,10 @@ const CadastrarFornecedor = () => {
     try {
       const response = await fetch(`${URL}/fornecedor`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({
           nome: form.NOME,
           telefone: form.TELEFONE,

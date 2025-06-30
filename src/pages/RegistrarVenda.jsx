@@ -13,7 +13,9 @@ const RegistrarVenda = () => {
   });
 
   const [notificacao, setNotificacao] = useState(null);
-  const [vendas, setVendas] = useState([]); 
+  const [vendas, setVendas] = useState([]);
+
+  const token = localStorage.getItem('token');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,10 +39,13 @@ const RegistrarVenda = () => {
 
   const carregarVendas = async () => {
     try {
-      const response = await fetch(`${URL}/venda`);
+      const response = await fetch(`${URL}/venda`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (response.ok) {
         const data = await response.json();
-        console.log("📦 Dados recebidos do back-end:", data); // 👈 Adicione esta linha
         setVendas(data);
       }
     } catch (error) {
@@ -69,7 +74,9 @@ const RegistrarVenda = () => {
     try {
       const response = await fetch(`${URL}/venda`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+         },
         body: JSON.stringify({
           valorVenda: parseFloat(form.VALOR_VENDA),
           valorPago: parseFloat(form.VALOR_PAGO),
@@ -181,7 +188,7 @@ const RegistrarVenda = () => {
                 <td>{Number(venda.VALOR_VENDA).toFixed(2)}</td>
                 <td>{Number(venda.VALOR_PAGO).toFixed(2)}</td>
                 <td>{venda.FORMA_PAGAMENTO}</td>
-                <td>{new Date(venda.DATA_VENDA).toLocaleString()}</td>               
+                <td>{new Date(venda.DATA_VENDA).toLocaleString()}</td>
                 <td>{Number(venda.TROCO).toFixed(2)}</td>
               </tr>
             ))}

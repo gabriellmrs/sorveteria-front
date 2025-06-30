@@ -7,13 +7,19 @@ const useFornecedores = () => {
   const [formData, setFormData] = useState({});
   const [popup, setPopup] = useState({ tipo: '', fornecedor: null });
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     fetchTodosFornecedores();
   }, []);
 
   const fetchTodosFornecedores = async () => {
     try {
-      const res = await fetch(`${URL}/fornecedor`);
+      const res = await fetch(`${URL}/fornecedor`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setFornecedores(data);
     } catch (error) {
@@ -28,7 +34,11 @@ const useFornecedores = () => {
     }
 
     try {
-      const res = await fetch(`${URL}/fornecedor/${encodeURIComponent(busca)}`);
+      const res = await fetch(`${URL}/fornecedor/${encodeURIComponent(busca)}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (!res.ok) {
         const errorData = await res.json();
         alert(errorData.message || 'Erro na busca');
@@ -54,7 +64,10 @@ const useFornecedores = () => {
 
     try {
       const res = await fetch(`${URL}/fornecedor/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
 
       if (!res.ok) throw new Error("Erro ao excluir fornecedor");
@@ -71,7 +84,10 @@ const useFornecedores = () => {
     try {
       const res = await fetch(`${URL}/fornecedor/${formData.ID}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           nome: formData.NOME,
           telefone: formData.TELEFONE,

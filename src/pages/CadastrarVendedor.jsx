@@ -15,6 +15,7 @@ const CadastrarVendedor = () => {
   });
 
   const [notificacao, setNotificacao] = useState(null);
+  const token = localStorage.getItem('token');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -43,7 +44,10 @@ const CadastrarVendedor = () => {
     try {
       const response = await fetch(`${URL}/vendedor`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           nome: form.NOME,
           bairro: form.BAIRRO,

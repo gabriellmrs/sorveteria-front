@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const URL = 'http://localhost:5000';
+import URL from '../service/url.js';
 
 export function useSaidas() {
   const [saidas, setSaidas] = useState([]);
@@ -16,9 +15,15 @@ export function useSaidas() {
   const [popup, setPopup] = useState({ tipo: '', saida: null });
   const [formData, setFormData] = useState({});
 
+  const token = localStorage.getItem('token');
+
   const fetchSaidasDoDia = async () => {
     try {
-      const res = await fetch(`${URL}/saida`);
+      const res = await fetch(`${URL}/saida`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setSaidas(data);
     } catch (error) {
@@ -35,7 +40,10 @@ export function useSaidas() {
     try {
       const res = await fetch(`${URL}/saida/filtro`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(filtros),
       });
       const data = await res.json();
@@ -65,6 +73,9 @@ export function useSaidas() {
     try {
       const res = await fetch(`${URL}/saida/${id}`, {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
 
       if (!res.ok) throw new Error('Erro ao excluir saída');
@@ -86,7 +97,10 @@ export function useSaidas() {
     try {
       const res = await fetch(`${URL}/saida/${formData.id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(formData),
       });
 

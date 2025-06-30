@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-
-const URL = 'http://localhost:5000'; // Substitua pelo seu backend
+import URL from '../service/url.js';
 
 export const useConsultarVendas = () => {
     const [vendas, setVendas] = useState([]);
@@ -15,6 +14,8 @@ export const useConsultarVendas = () => {
     const [popup, setPopup] = useState({ tipo: '', venda: null });
     const [formData, setFormData] = useState({});
 
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         fetchVendasDoDia();
     }, []);
@@ -27,7 +28,11 @@ export const useConsultarVendas = () => {
 
     const fetchVendasDoDia = async () => {
         try {
-            const res = await fetch(`${URL}/venda`);
+            const res = await fetch(`${URL}/venda`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const data = await res.json();
             setVendas(data);
         } catch (error) {
@@ -44,7 +49,10 @@ export const useConsultarVendas = () => {
         try {
             const res = await fetch(`${URL}/venda/filtro`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify(filtros),
             });
             const data = await res.json();
@@ -73,6 +81,9 @@ export const useConsultarVendas = () => {
         try {
             const res = await fetch(`${URL}/venda/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             if (!res.ok) throw new Error('Erro ao excluir venda');
@@ -94,7 +105,10 @@ export const useConsultarVendas = () => {
         try {
             const res = await fetch(`${URL}/venda/${formData.ID}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
                 body: JSON.stringify(formData),
             });
 

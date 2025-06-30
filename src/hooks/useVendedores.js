@@ -11,13 +11,19 @@ export const useVendedores = () => {
 
   const filtros = ['Nome A-Z', 'Bairro', 'Rua'];
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
     fetchTodosVendedores();
   }, []);
 
   const fetchTodosVendedores = async () => {
     try {
-      const res = await fetch(`${URL}/vendedor`);
+      const res = await fetch(`${URL}/vendedor`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = await res.json();
       setVendedores(data);
     } catch (error) {
@@ -29,9 +35,13 @@ export const useVendedores = () => {
     if (!busca) return fetchTodosVendedores();
 
     try {
-      const res = await fetch(`${URL}/vendedor/${busca}`);
+      const res = await fetch(`${URL}/vendedor/${busca}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       const data = await res.json();
-      setVendedores([data]); 
+      setVendedores([data]);
     } catch (err) {
       console.error('Erro na busca por vendedor:', err);
     }
@@ -52,7 +62,11 @@ export const useVendedores = () => {
     if (!confirm) return;
 
     try {
-      const res = await fetch(`${URL}/vendedor/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${URL}/vendedor/${id}`, {
+        method: 'DELETE', headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (!res.ok) throw new Error();
       alert("Vendedor excluído com sucesso!");
       fetchTodosVendedores();
@@ -66,35 +80,38 @@ export const useVendedores = () => {
   };
 
   const handleEditSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  
-  const payload = {
-    nome: formData.NOME,
-    bairro: formData.BAIRRO,
-    rua: formData.RUA,
-    numero_casa: formData.NUMERO_CASA,
-    telefone: formData.TELEFONE,
+
+    const payload = {
+      nome: formData.NOME,
+      bairro: formData.BAIRRO,
+      rua: formData.RUA,
+      numero_casa: formData.NUMERO_CASA,
+      telefone: formData.TELEFONE,
+    };
+
+    try {
+      const res = await fetch(`${URL}/vendedor/${popup.vendedor.ID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error();
+
+      alert('Vendedor editado com sucesso!');
+
+      setPopup({ tipo: '', vendedor: null });
+      fetchTodosVendedores();
+    } catch (err) {
+      console.error('Erro ao editar vendedor:', err);
+      alert('Erro ao editar vendedor');
+    }
   };
-
-  try {
-    const res = await fetch(`${URL}/vendedor/${popup.vendedor.ID}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) throw new Error();
-
-    alert('Vendedor editado com sucesso!'); 
-
-    setPopup({ tipo: '', vendedor: null });
-    fetchTodosVendedores();
-  } catch (err) {
-    console.error('Erro ao editar vendedor:', err);
-    alert('Erro ao editar vendedor');
-  }
-};
 
 
   useEffect(() => {

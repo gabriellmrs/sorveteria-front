@@ -3,6 +3,7 @@ import styles from '../styles/Consultar.module.css';
 import ItemList from '../components/ItemList/ItemList';
 import { useClientes } from '../hooks/ConsultarClientes';
 
+
 const ConsultarCliente = () => {
   const {
     clientes,

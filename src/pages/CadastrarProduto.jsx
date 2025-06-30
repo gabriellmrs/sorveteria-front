@@ -12,6 +12,7 @@ const CadastrarProduto = () => {
   });
 
   const [notificacao, setNotificacao] = useState(null);
+  const token = localStorage.getItem('token');
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -45,7 +46,9 @@ const CadastrarProduto = () => {
     try {
       const response = await fetch(`${URL}/produto`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+         },
         body: JSON.stringify({
           nome: form.NOME,
           valor: parseFloat(form.VALOR),
