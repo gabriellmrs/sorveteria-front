@@ -1,5 +1,5 @@
-import  { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
 import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa';
 import URL from '../service/url.js';
@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErro(''); 
+    setErro('');
 
     try {
       const resposta = await fetch(`${URL}/login`, {
@@ -29,7 +29,7 @@ const Login = () => {
       }
 
       localStorage.setItem('token', dados.token);
-      navigate('/home'); 
+      navigate('/home');
     } catch (error) {
       console.error('Erro de conexão ou no servidor:', error);
       setErro('Erro de conexão com o servidor. Tente novamente mais tarde.');
@@ -75,7 +75,9 @@ const Login = () => {
             <label className={styles.rememberMe}>
               <input type="checkbox" /> Lembrar de mim
             </label>
-            <a href="#" className={styles.forgotPassword}>Esqueceu a senha?</a>
+            <a onClick={() => navigate('/esqueci-senha')} className={styles.forgotPassword}>
+              Esqueceu a senha?
+            </a>
           </div>
 
           {erro && <p className={styles.erro}>{erro}</p>}

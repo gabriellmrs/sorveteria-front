@@ -131,6 +131,7 @@
 .forgotPassword:hover {
   color: var(--secondary-color);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .button {
@@ -254,4 +255,19 @@
 .signupLink:hover {
   color: var(--secondary-color);
   text-decoration: underline;
+  cursor: pointer;
 }
+
+.spinnerIcon {
+  font-size: 1.2rem;
+  animation: spin 1s linear infinite;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

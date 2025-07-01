@@ -18,6 +18,8 @@ import ConsultarVendedor from './pages/ConsultarVendedor';
 import Carrinho from './pages/Carrinho';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import SolicitarCodigo from './pages/SolicitarCodigo';
+import RedefinirSenha from './pages/RedefinirSenha'; // Importar a nova página
 
 function App() {
   return (
@@ -41,8 +43,10 @@ function AppContent() {
 
       <div style={{ marginLeft: token && !isLoginPage ? '60px' : '0', padding: '20px' }}>
         <Routes>
-          {/* Rota pública */}
+          {/* Rotas públicas */}
           <Route path="/" element={<Login />} />
+          <Route path="/esqueci-senha" element={<SolicitarCodigo />} />
+          <Route path="/redefinir-senha" element={<RedefinirSenha />} /> {/* Nova rota pública */}
 
           {/* Rotas privadas */}
           <Route element={<PrivateRoute />}>
