@@ -1,7 +1,6 @@
-/* Variáveis para fácil modificação */
 :root {
-  --primary-color: #5b86e5; /* Um azul mais vibrante */
-  --secondary-color: #36d1dc; /* Um azul/ciano complementar */
+  --primary-color: #5b86e5; 
+  --secondary-color: #36d1dc; 
   --text-color: #333;
   --light-text-color: #666;
   --background-light: #f8f9fa;
@@ -16,8 +15,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); /* Gradiente de fundo */
-  font-family: 'Inter', sans-serif; /* Fonte moderna */
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,14 +24,14 @@
 .loginCard {
   background-color: var(--card-background);
   padding: 45px 35px;
-  border-radius: 20px; /* Bordas mais arredondadas */
-  box-shadow: 0 15px 30px var(--shadow-color); /* Sombra mais pronunciada e suave */
+  border-radius: 20px; 
+  box-shadow: 0 15px 30px var(--shadow-color);
   width: 100%;
-  max-width: 420px; /* Um pouco maior para acomodar mais elementos */
+  max-width: 420px; 
   display: flex;
   flex-direction: column;
-  gap: 25px; /* Espaçamento entre os elementos */
-  animation: fadeIn 0.8s ease-out; /* Animação de entrada */
+  gap: 25px; 
+  animation: fadeIn 0.8s ease-out; 
 }
 
 @keyframes fadeIn {
@@ -50,7 +49,7 @@
   text-align: center;
   font-size: 32px;
   color: var(--text-color);
-  margin-bottom: 5px; /* Menos margem para o subtítulo */
+  margin-bottom: 5px;
   font-weight: 700;
 }
 
@@ -64,22 +63,22 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px; /* Espaçamento entre os inputs */
+  gap: 18px; 
 }
 
 .inputGroup {
   display: flex;
   align-items: center;
   background-color: var(--background-light);
-  border-radius: 10px; /* Bordas arredondadas nos inputs */
+  border-radius: 10px; 
   padding: 12px 15px;
   border: 1px solid var(--border-color);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição para foco */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .inputGroup:focus-within {
-  border-color: var(--primary-color); /* Cor ao focar */
-  box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2); /* Sombra suave ao focar */
+  border-color: var(--primary-color); 
+  box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2); 
 }
 
 .inputGroup input {
@@ -88,7 +87,7 @@
   outline: none;
   flex: 1;
   font-size: 17px;
-  padding-left: 12px; /* Mais espaço para o ícone */
+  padding-left: 12px; 
   color: var(--text-color);
 }
 
@@ -98,9 +97,9 @@
 }
 
 .icon {
-  font-size: 20px; /* Ícones um pouco maiores */
+  font-size: 20px; 
   color: var(--light-text-color);
-  min-width: 20px; /* Garante que o ícone não encolha */
+  min-width: 20px; 
 }
 
 .options {
@@ -118,9 +117,6 @@
   cursor: pointer;
 }
 
-.rememberMe input[type="checkbox"] {
-  accent-color: var(--primary-color); /* Cor do checkbox */
-}
 
 .forgotPassword {
   color: var(--primary-color);
@@ -136,7 +132,7 @@
 
 .button {
   padding: 15px;
-  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%); /* Gradiente no botão */
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
   color: white;
   font-weight: bold;
   border: none;
@@ -148,7 +144,7 @@
 }
 
 .button:hover {
-  transform: translateY(-2px); /* Efeito de "levitar" */
+  transform: translateY(-2px); 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -161,7 +157,7 @@
   color: var(--error-color);
   font-size: 14px;
   text-align: center;
-  margin-top: -10px; /* Ajusta a posição */
+  margin-top: -10px; 
 }
 
 .divider {
@@ -188,55 +184,7 @@
   margin-left: .5em;
 }
 
-.socialLogin {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-}
 
-.socialButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-  background-color: var(--background-light);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-  flex: 1; /* Para ocupar o espaço disponível */
-}
-
-.socialButton:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
-}
-
-.socialButton.google {
-  color: #dd4b39; /* Cor do Google */
-  border-color: #dd4b39;
-}
-.socialButton.google:hover {
-  background-color: #dd4b39;
-  color: white;
-}
-
-.socialButton.github {
-  color: #333; /* Cor do GitHub */
-  border-color: #333;
-}
-.socialButton.github:hover {
-  background-color: #333;
-  color: white;
-}
-
-
-.socialIcon {
-  font-size: 20px;
-}
 
 .signupText {
   text-align: center;
@@ -271,3 +219,50 @@
   100% { transform: rotate(360deg); }
 }
 
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 30px 20px;
+    border-radius: 15px;
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .form {
+    gap: 14px;
+  }
+
+  .inputGroup {
+    padding: 10px 12px;
+  }
+
+  .inputGroup input {
+    font-size: 15px;
+  }
+
+  .button {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .socialButton {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .signupText {
+    font-size: 13px;
+  }
+
+  .forgotPassword,
+  .signupLink {
+    font-size: 14px;
+  }
+}

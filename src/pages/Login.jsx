@@ -73,7 +73,6 @@ const Login = () => {
 
           <div className={styles.options}>
             <label className={styles.rememberMe}>
-              <input type="checkbox" /> Lembrar de mim
             </label>
             <a onClick={() => navigate('/esqueci-senha')} className={styles.forgotPassword}>
               Esqueceu a senha?
@@ -85,30 +84,7 @@ const Login = () => {
           <button type="submit" className={styles.button}>Entrar</button>
         </form>
 
-        <div className={styles.divider}>
-          <span>OU</span>
-        </div>
-
-        <div className={styles.socialLogin}>
-          <button
-            className={`${styles.socialButton} ${styles.google}`}
-            onClick={() => handleSocialLogin('Google')}
-            aria-label="Login com Google"
-          >
-            <FaGoogle className={styles.socialIcon} /> Google
-          </button>
-          <button
-            className={`${styles.socialButton} ${styles.github}`}
-            onClick={() => handleSocialLogin('GitHub')}
-            aria-label="Login com GitHub"
-          >
-            <FaGithub className={styles.socialIcon} /> GitHub
-          </button>
-        </div>
-
-        <p className={styles.signupText}>
-          Não tem uma conta? <a href="#" className={styles.signupLink}>Cadastre-se</a>
-        </p>
+        
       </div>
     </div>
   );
