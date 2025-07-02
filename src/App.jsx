@@ -41,13 +41,13 @@ function AppContent() {
       {/* Mostrar Sidebar só se tiver token e não estiver na página de login */}
       {token && !isLoginPage && <Sidebar />}
 
-      <div style={{ marginLeft: token && !isLoginPage ? '60px' : '0', padding: '20px' }}>
+      <div style={{ marginLeft: token && !isLoginPage ? '60px' : '0'}}>
         <Routes>
           {/* Rotas públicas */}
           <Route path="/" element={<Login />} />
           <Route path="/esqueci-senha" element={<SolicitarCodigo />} />
           <Route path="/redefinir-senha" element={<RedefinirSenha />} /> {/* Nova rota pública */}
-
+          
           {/* Rotas privadas */}
           <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Home />} />

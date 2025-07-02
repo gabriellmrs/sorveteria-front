@@ -111,12 +111,11 @@ const ConsultarFornecedor = () => {
           { key: 'NOME', label: 'Nome' },
           { key: 'TELEFONE', label: 'Telefone' },
         ]}
-        acoes={[
-          { icone: <FaEye />, onClick: (f) => setPopup({ tipo: 'detalhes', fornecedor: f }) },
-          { icone: <FaEdit />, onClick: (f) => setPopup({ tipo: 'editar', fornecedor: f }) },
-          { icone: <FaTrash />, onClick: (f) => excluirFornecedor(f.ID) },
-        ]}
+        onDetalhes={(f) => setPopup({ tipo: 'detalhes', fornecedor: f })}
+        onEditar={(f) => setPopup({ tipo: 'editar', fornecedor: f })}
+        onExcluir={(f) => excluirFornecedor(f.ID)}
       />
+
 
       {renderPopup()}
     </div>
