@@ -19,7 +19,8 @@ import Carrinho from './pages/Carrinho';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute.jsx';
 import SolicitarCodigo from './pages/SolicitarCodigo';
-import RedefinirSenha from './pages/RedefinirSenha'; // Importar a nova página
+import RedefinirSenha from './pages/RedefinirSenha'; 
+import TotaisMes from './pages/TotaisMes';
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function AppContent() {
             <Route path="/venda-atacado" element={<CadastrarVendaCliente />} />
             <Route path="/consultar/atacado" element={<ConsultarVendaAtacado />} />
             <Route path="/vendedores/:nome" element={<Carrinho />} />
+            <Route path="/consultar/visao-geral" element={<TotaisMes />} />
           </Route>
         </Routes>
       </div>  
