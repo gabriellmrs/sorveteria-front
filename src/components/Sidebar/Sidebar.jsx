@@ -128,9 +128,10 @@ const Sidebar = () => {
       transition={{ duration: 0.3 }}
     >
       {/* Ícone de Menu Hamburguer */}
-      <div className={styles.menuItem}>
-        <FaBars className={styles.icon} />
-      </div>
+      <Link to="/home" className={styles.menuItem}>
+  <FaBars className={styles.icon} />
+</Link>
+
 
       {/* Renderização dos menus */}
       {menuItems.map((item) => (

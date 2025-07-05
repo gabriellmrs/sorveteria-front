@@ -4,6 +4,9 @@ import styles from '../styles/Login.module.css';
 import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa';
 import URL from '../service/url.js';
 
+
+const logoPath = '/logo.jpeg'; 
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -37,12 +40,14 @@ const Login = () => {
   };
 
   const handleSocialLogin = (platform) => {
-    alert(`Login com ${platform} não implementado ainda!`);
+    setErro(`Login com ${platform} não implementado ainda!`);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.loginCard}>
+        <img src={logoPath} alt="Logo FrostSys" className={styles.logoLogin} />
+
         <h2 className={styles.title}>Bem-vindo de Volta!</h2>
         <p className={styles.subtitle}>Faça login para continuar</p>
 
@@ -83,8 +88,6 @@ const Login = () => {
 
           <button type="submit" className={styles.button}>Entrar</button>
         </form>
-
-        
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const useProdutos = () => {
     const [popup, setPopup] = useState({ tipo: '', produto: null });
     const [formData, setFormData] = useState({});
 
-    // Pega o token do localStorage
+   
     const token = localStorage.getItem('token');
 
     useEffect(() => {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
 import { FaEnvelope } from 'react-icons/fa';
-import { ImSpinner2 } from 'react-icons/im'; // ícone de loading
+import { ImSpinner2 } from 'react-icons/im'; 
 import URL from '../service/url';
 
 const SolicitarCodigo = () => {

@@ -81,7 +81,7 @@ input {
 }
 
 .historico {
-  margin: 2rem auto 0 auto; /* Centraliza horizontalmente */
+  margin: 2rem auto 0 auto; 
   padding: 1rem;
   border-radius: 10px;
   background-color: #ffffff;
@@ -96,7 +96,7 @@ input {
 .historico h3 {
   margin-bottom: 0.8rem;
   color: #333;
-  text-align: left; /* 🔧 Alinha o título à esquerda */
+  text-align: left; 
   font-weight: 600;
   font-size: 1.1rem;
 }

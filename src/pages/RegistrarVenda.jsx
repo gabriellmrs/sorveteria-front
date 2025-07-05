@@ -97,7 +97,7 @@ const RegistrarVenda = () => {
           FORMA_PAGAMENTO: '',
         });
 
-        carregarVendas(); // ⏬ Atualiza o histórico após o registro
+        carregarVendas(); 
       } else {
         const errorText = await response.text();
         setNotificacao({
@@ -167,7 +167,6 @@ const RegistrarVenda = () => {
         <Button type="submit">FINALIZAR</Button>
       </form>
 
-      {/* ⬇ Histórico de Vendas */}
       <div className={styles.historico}>
         <h3>📋 Histórico de Vendas do Dia</h3>
         {vendas.length === 0 ? (

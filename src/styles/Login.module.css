@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #5b86e5; 
-  --secondary-color: #36d1dc; 
+  --primary-color: #5b86e5;
+  --secondary-color: #36d1dc;
   --text-color: #333;
   --light-text-color: #666;
   --background-light: #f8f9fa;
@@ -16,7 +16,7 @@
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,14 +24,15 @@
 .loginCard {
   background-color: var(--card-background);
   padding: 45px 35px;
-  border-radius: 20px; 
+  border-radius: 20px;
   box-shadow: 0 15px 30px var(--shadow-color);
   width: 100%;
-  max-width: 420px; 
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 25px; 
-  animation: fadeIn 0.8s ease-out; 
+  align-items: center; 
+  gap: 25px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 @keyframes fadeIn {
@@ -44,6 +45,20 @@
     transform: translateY(0);
   }
 }
+
+.logoLogin {
+    width: 100px; 
+    height: auto;
+    margin-bottom: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.3s ease;
+}
+
+.logoLogin:hover {
+    transform: scale(1.05); 
+}
+
 
 .title {
   text-align: center;
@@ -63,22 +78,23 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px; 
+  gap: 18px;
+  width: 100%; 
 }
 
 .inputGroup {
   display: flex;
   align-items: center;
   background-color: var(--background-light);
-  border-radius: 10px; 
+  border-radius: 10px;
   padding: 12px 15px;
   border: 1px solid var(--border-color);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .inputGroup:focus-within {
-  border-color: var(--primary-color); 
-  box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2); 
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(91, 134, 229, 0.2);
 }
 
 .inputGroup input {
@@ -87,7 +103,7 @@
   outline: none;
   flex: 1;
   font-size: 17px;
-  padding-left: 12px; 
+  padding-left: 12px;
   color: var(--text-color);
 }
 
@@ -97,9 +113,9 @@
 }
 
 .icon {
-  font-size: 20px; 
+  font-size: 20px;
   color: var(--light-text-color);
-  min-width: 20px; 
+  min-width: 20px;
 }
 
 .options {
@@ -108,6 +124,7 @@
   align-items: center;
   font-size: 14px;
   color: var(--light-text-color);
+  width: 100%; 
 }
 
 .rememberMe {
@@ -132,7 +149,7 @@
 
 .button {
   padding: 15px;
-  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+  background: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   color: white;
   font-weight: bold;
   border: none;
@@ -141,10 +158,11 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%; 
 }
 
 .button:hover {
-  transform: translateY(-2px); 
+  transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -157,53 +175,13 @@
   color: var(--error-color);
   font-size: 14px;
   text-align: center;
-  margin-top: -10px; 
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: var(--light-text-color);
-  font-size: 14px;
-  margin: 15px 0;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.divider:not(:empty)::before {
-  margin-right: .5em;
-}
-
-.divider:not(:empty)::after {
-  margin-left: .5em;
+  margin-top: -10px;
+  width: 100%; 
 }
 
 
-
-.signupText {
-  text-align: center;
-  font-size: 15px;
-  color: var(--light-text-color);
-  margin-top: 15px;
-}
-
-.signupLink {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.signupLink:hover {
-  color: var(--secondary-color);
-  text-decoration: underline;
-  cursor: pointer;
+.divider, .socialLogin, .socialButton, .signupText, .signupLink {
+    display: none; 
 }
 
 .spinnerIcon {
@@ -224,6 +202,11 @@
     padding: 30px 20px;
     border-radius: 15px;
     gap: 20px;
+  }
+
+  .logoLogin {
+      width: 80px; 
+      margin-bottom: 15px;
   }
 
   .title {

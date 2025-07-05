@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+:root {
+    --cor-primaria: #007bff; 
+    --cor-secundaria: #6f42c1; 
+    --cor-fundo-claro: #f8f9fa; 
+    --cor-fundo-medio: #e9ecef; 
+    --cor-texto-escuro: #343a40; 
+    --cor-texto-claro: #ffffff; 
+    --sombra-leve: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --borda-arredondada-grande: 20px;
+    --borda-arredondada-media: 12px;
+}
+
+.pageWrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--cor-fundo-claro) 0%, var(--cor-fundo-medio) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor-texto-escuro);
+    box-sizing: border-box;
+    overflow-x: hidden; 
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px; 
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.welcomeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    width: 100%;
+    background: linear-gradient(45deg, #e0f7fa, #ffffff); 
+    border-radius: var(--borda-arredondada-grande);
+    box-shadow: var(--sombra-media);
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcomeSection::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,123,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float1 10s infinite ease-in-out;
+}
+
+.welcomeSection::after {
+    content: '';
+    position: absolute;
+    bottom: -70px;
+    right: -70px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(111,66,193,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float2 12s infinite ease-in-out;
+}
+
+.logo {
+    width: 120px; 
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: var(--borda-arredondada-media); 
+    box-shadow: var(--sombra-leve);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.welcomeTitle {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.welcomeTitle span {
+    color: var(--cor-primaria);
+    text-shadow: 1px 1px 3px rgba(0, 123, 255, 0.1);
+}
+
+.welcomeSubtitle {
+    font-size: 1.4em;
+    color: #6c757d;
+    margin-bottom: 0;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+
+.quickAccessSection {
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--cor-texto-claro);
+    border-radius: var(--borda-arredondada-grande);
+    box-shadow: var(--sombra-leve);
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    border-radius: 2px;
+}
+
+.quickAccessGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.quickAccessCard {
+    background-color: var(--cor-fundo-claro);
+    padding: 25px;
+    border-radius: var(--borda-arredondada-media);
+    box-shadow: var(--sombra-leve);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.quickAccessCard:hover {
+    box-shadow: var(--sombra-media);
+    border-color: var(--cor-primaria);
+    transform: translateY(-3px);
+}
+
+.quickAccessIcon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: var(--cor-primaria);
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.quickAccessCard:hover .quickAccessIcon {
+    transform: scale(1.1);
+}
+
+.quickAccessCard h3 {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--cor-texto-escuro);
+    margin-bottom: 8px;
+}
+
+.quickAccessCard p {
+    font-size: 0.95em;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+
+
+@keyframes float1 {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 20px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-20px, -20px); }
+    100% { transform: translate(0, 0); }
+}
+
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .welcomeTitle {
+        font-size: 2.2em;
+    }
+    .welcomeSubtitle {
+        font-size: 1.2em;
+    }
+    .sectionTitle {
+        font-size: 1.8em;
+    }
+    .quickAccessGrid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .welcomeSection, .quickAccessSection {
+        padding: 40px 15px;
+        margin-bottom: 30px;
+    }
+    .welcomeTitle {
+        font-size: 1.8em;
+    }
+    .welcomeSubtitle {
+        font-size: 1em;
+    }
+    .sectionTitle {
+        font-size: 1.6em;
+        margin-bottom: 30px;
+    }
+    .quickAccessGrid {
+        grid-template-columns: 1fr; 
+    }
+    .logo {
+        width: 100px;
+    }
+    .quickAccessCard {
+        padding: 20px;
+    }
+    .quickAccessIcon {
+        font-size: 2.5em;
+    }
+    .quickAccessCard h3 {
+        font-size: 1.2em;
+    }
+    .quickAccessCard p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcomeSection, .quickAccessSection {
+        padding: 30px 10px;
+        margin-bottom: 20px;
+    }
+    .welcomeTitle {
+        font-size: 1.5em;
+    }
+    .welcomeSubtitle {
+        font-size: 0.9em;
+    }
+    .sectionTitle {
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+}
