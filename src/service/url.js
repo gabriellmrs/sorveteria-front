@@ -1,3 +1,4 @@
-const URL = 'http://localhost:5000'
+const URL = import.meta.env.VITE_API_URL;
+
 
 export default URL
