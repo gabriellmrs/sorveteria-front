@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
-import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaSpinner } from 'react-icons/fa';
 import URL from '../service/url.js';
 
 
-const logoPath = '/logo.jpeg'; 
+const logoPath = '/logo.jpeg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setErro('');
+    setLoading(true);
 
     try {
       const resposta = await fetch(`${URL}/login`, {
@@ -36,6 +39,9 @@ const Login = () => {
     } catch (error) {
       console.error('Erro de conexão ou no servidor:', error);
       setErro('Erro de conexão com o servidor. Tente novamente mais tarde.');
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +92,14 @@ const Login = () => {
 
           {erro && <p className={styles.erro}>{erro}</p>}
 
-          <button type="submit" className={styles.button}>Entrar</button>
+          <button type="submit" className={styles.button} disabled={loading}>
+            {loading ? (
+              <FaSpinner className={styles.spinnerIcon} />
+            ) : (
+              'Entrar'
+            )}
+          </button>
+
         </form>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import { motion } from 'framer-motion';
+import URL from '../service/url';
 
 const Home = () => {
   const [userName, setUserName] = useState('Cliente'); 
@@ -11,7 +12,7 @@ const Home = () => {
   const buscarNome = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/usuario', {
+      const res = await fetch(`${URL}/usuario`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
