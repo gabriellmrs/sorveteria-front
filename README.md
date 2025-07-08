@@ -1,4 +1,4 @@
-# ❄️ FrostSys – Sistema de Gestão para Sorveterias
+# ❄️ FrostSys – Sistema de Gestão para Sorveterias - Frontend
 
 Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de sorveterias. Este repositório contém o **frontend da aplicação**, desenvolvido em React com foco em performance, usabilidade e design responsivo.
 
@@ -6,18 +6,20 @@ Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de 
 
 ---
 
-## 🚀 Funcionalidades principais
+## 🔍 Funcionalidades principais
 
-✅ Login seguro com JWT  
+✅ Login seguro com JWT, com autenticação via e-mail e senha  
+✅ Recuperação de senha   
 ✅ Visualização do nome do usuário na tela inicial  
-✅ Dashboard com atalhos rápidos  
-✅ Gestão de clientes, produtos, fornecedores e vendas  
+✅ Visualização de totais de vendas e saidas com filtros personalizados e com dados dinâmicos 
+✅ Gestão de clientes, produtos, fornecedores, vendedore, saidas e vendas  
 ✅ Responsivo para dispositivos móveis  
 ✅ Sistema de recuperação de senha por e-mail
+✅ Barra lateral (Sidebar) intuitiva para facilitar a navegação
 
 ---
 
-## 🧰 Tecnologias utilizadas
+## ⚙️ Tecnologias utilizadas
 
 - [React](https://reactjs.org/)
 - [Vite](https://vitejs.dev/)
@@ -58,7 +60,7 @@ npm run dev
 
 ---
 
-## 📁 Estrutura de pastas
+### 📁 Estrutura de pastas
 src/
 ├── components/       # Componentes reutilizáveis
 ├── pages/            # Telas do sistema (Home, Login, etc)
