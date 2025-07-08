@@ -48,7 +48,7 @@ Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de 
 
 Certifique-se de ter as seguintes ferramentas instaladas na sua máquina:
 
-- **Node.js** (versão 16 ou superior)
+- **React** 
 - **npm** ou **yarn**
 - **Git**
 - Um banco de dados configurado no **Railway**
@@ -83,6 +83,17 @@ src/
 ├── styles/           # Estilos CSS Modules
 └── App.jsx           # Roteamento principal
 ```
+
+---
+
+## 🔧 Melhorias Futuras
+A aplicação ainda pode evoluir bastante. Algumas funcionalidades previstas para versões futuras incluem:
+- 🧾 **Impressão de notas:** Geração e impressão de comprovantes de venda e notas simplificadas.
+- 📊 **Dashboards interativos:** Gráficos e indicadores visuais para facilitar o acompanhamento do desempenho da sorveteria.
+- 📦 **Gestão de estoque:** Controle completo de entrada, saída e alertas de baixo estoque.
+- 🍦 **Controle de produção:** Registro das receitas, insumos e previsões de produção diária ou semanal.
+- 📈 **Relatórios detalhados:** Geração de relatórios personalizados com filtros por período, produto, cliente e vendedor.
+- ⚙️ **Módulo de configurações:** Tela de configurações para personalizar o sistema (dados da empresa, preferências de visualização, permissões etc).
 
 ## 📩 Contato
 
