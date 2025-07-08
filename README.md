@@ -1,5 +1,11 @@
 # ❄️ FrostSys – Sistema de Gestão para Sorveterias - Frontend
 
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+
 Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de sorveterias. Este repositório contém o **frontend da aplicação**, desenvolvido em React com foco em performance, usabilidade e design responsivo.
 
 <img width="1918" height="906" alt="Image" src="https://github.com/user-attachments/assets/7e4260df-62df-42b0-ae8f-55a8a172cb45" />
@@ -38,7 +44,17 @@ Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de 
 
 ---
 
+## Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas na sua máquina:
+
+- **Node.js** (versão 16 ou superior)
+- **npm** ou **yarn**
+- **Git**
+- Um banco de dados configurado no **Railway**
+
 ## 📦 Instalação local
+
 
 ```bash
 # Clone o repositório
@@ -55,17 +71,24 @@ VITE_API_URL=https://sua-api-no-render.onrender.com
 
 # Execute o projeto
 npm run dev
-
-<img width="1919" height="963" alt="Image" src="https://github.com/user-attachments/assets/5578f5e2-b701-40e8-9b52-0a21db6d58a3" />
-
+```
 ---
 
-### 📁 Estrutura de pastas
+## 📁 Estrutura de pastas
 src/
 ├── components/       # Componentes reutilizáveis
 ├── pages/            # Telas do sistema (Home, Login, etc)
 ├── service/          # Serviços de API (url.js)
 ├── styles/           # Estilos CSS Modules
 └── App.jsx           # Roteamento principal
+
+## 📩 Contato
+
+Caso tenha dúvidas ou sugestões, entre em contato:
+
+- **E-mail**: [gabrielmoraiss755@gmail.com](mailto:gabrielmoraiss755@gmail.com)
+- **LinkedIn**: [Gabriel Morais](https://www.linkedin.com/in/gabriel-morais-649016295/)
+- **GitHub**: [gabriellmrs](https://github.com/gabriellmrs)
+
 
 
