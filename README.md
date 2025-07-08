@@ -14,14 +14,14 @@ Bem-vindo ao **FrostSys**, um sistema moderno e eficiente para gerenciamento de 
 
 ## 🔍 Funcionalidades principais
 
-✅ Login seguro com JWT, com autenticação via e-mail e senha  
-✅ Recuperação de senha   
-✅ Visualização do nome do usuário na tela inicial  
-✅ Visualização de totais de vendas e saidas com filtros personalizados e com dados dinâmicos 
-✅ Gestão de clientes, produtos, fornecedores, vendedore, saidas e vendas  
-✅ Responsivo para dispositivos móveis  
-✅ Sistema de recuperação de senha por e-mail
-✅ Barra lateral (Sidebar) intuitiva para facilitar a navegação
+- Login seguro com JWT, com autenticação via e-mail e senha.
+- Recuperação de senha.
+- Visualização do nome do usuário na tela inicial.
+- Visualização de totais de vendas e saidas com filtros personalizados e com dados dinâmicos.
+- Gestão de clientes, produtos, fornecedores, vendedore, saidas e vendas.
+- Responsivo para dispositivos móveis.
+- Sistema de recuperação de senha por e-mail.
+- Barra lateral (Sidebar) intuitiva para facilitar a navegação.
 
 ---
 
@@ -75,12 +75,14 @@ npm run dev
 ---
 
 ## 📁 Estrutura de pastas
+```bash
 src/
 ├── components/       # Componentes reutilizáveis
 ├── pages/            # Telas do sistema (Home, Login, etc)
 ├── service/          # Serviços de API (url.js)
 ├── styles/           # Estilos CSS Modules
 └── App.jsx           # Roteamento principal
+```
 
 ## 📩 Contato
 
