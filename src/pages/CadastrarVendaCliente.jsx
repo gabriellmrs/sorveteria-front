@@ -12,8 +12,10 @@ const RegistrarVendaCliente = () => {
   });
 
   const [clientes, setClientes] = useState([]);
+  const [clientesFiltrados, setClientesFiltrados] = useState([]);
   const [vendas, setVendas] = useState([]);
   const [notificacao, setNotificacao] = useState(null);
+  const [mostrarSugestoes, setMostrarSugestoes] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -22,8 +24,8 @@ const RegistrarVendaCliente = () => {
       try {
         const response = await fetch(`${URL}/clientes`, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         const data = await response.json();
         setClientes(data);
@@ -37,27 +39,48 @@ const RegistrarVendaCliente = () => {
     };
 
     fetchClientes();
-    carregarVendas(); // Buscar as vendas ao carregar
+    carregarVendas();
   }, []);
 
   const carregarVendas = async () => {
     try {
       const response = await fetch(`${URL}/v-cliente`, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response.ok) {
         const data = await response.json();
         setVendas(data);
       }
     } catch (err) {
-      console.error("Erro ao buscar vendas do dia:", err);
+      console.error('Erro ao buscar vendas do dia:', err);
     }
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setForm({ ...form, [name]: value });
+
+    if (name === 'NOME') {
+      if (value.trim() === '') {
+        setClientesFiltrados([]);
+        setMostrarSugestoes(false);
+      } else {
+        const filtrados = clientes.filter((c) =>
+          c.NOME.toLowerCase().includes(value.toLowerCase())
+        );
+        setClientesFiltrados(filtrados);
+        setMostrarSugestoes(true);
+      }
+    }
+  };
+
+  const handleSelectCliente = (cliente) => {
+    setForm({ ...form, NOME: cliente.NOME });
+    setClientesFiltrados([]);
+    setMostrarSugestoes(false);
   };
 
   const validarFormulario = () => {
@@ -98,7 +121,7 @@ const RegistrarVendaCliente = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           nome: form.NOME,
@@ -113,7 +136,7 @@ const RegistrarVendaCliente = () => {
           message: 'Venda registrada com sucesso.',
         });
         setForm({ NOME: '', VALOR: '' });
-        carregarVendas(); // Atualiza a lista após registrar
+        carregarVendas();
       } else {
         const erro = await response.text();
         setNotificacao({
@@ -136,20 +159,33 @@ const RegistrarVendaCliente = () => {
       <h1 className={styles.titulo}>Registrar Venda</h1>
 
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="NOME" className={styles.label}>Cliente:</label>
-        <select
-          name="NOME"
-          value={form.NOME}
-          onChange={handleChange}
-          className={styles.select}
-        >
-          <option value="">Selecione um cliente</option>
-          {clientes.map((cliente) => (
-            <option key={cliente.ID} value={cliente.NOME}>
-              {cliente.NOME} - {cliente.CIDADE}/{cliente.BAIRRO}
-            </option>
-          ))}
-        </select>
+        <label htmlFor="NOME" className={styles.label}>
+          Cliente:
+        </label>
+        <div className={styles.autocompleteWrapper}>
+          <input
+            type="text"
+            name="NOME"
+            placeholder="Digite o nome do cliente"
+            value={form.NOME}
+            onChange={handleChange}
+            autoComplete="off"
+            className={styles.input}
+          />
+          {mostrarSugestoes && clientesFiltrados.length > 0 && (
+            <ul className={styles.sugestoes}>
+              {clientesFiltrados.map((cliente) => (
+                <li
+                  key={cliente.ID}
+                  onClick={() => handleSelectCliente(cliente)}
+                  className={styles.sugestaoItem}
+                >
+                  {cliente.NOME} - {cliente.CIDADE}/{cliente.BAIRRO}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
 
         <InputField
           type="text"
