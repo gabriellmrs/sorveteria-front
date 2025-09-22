@@ -12,6 +12,7 @@ const RegistrarSaida = () => {
     VALOR: '',
   });
 
+  const [fornecedores, setFornecedores] = useState([]);
   const [erros, setErros] = useState({});
   const [notificacao, setNotificacao] = useState(null);
   const [saidas, setSaidas] = useState([]);
@@ -26,17 +27,10 @@ const RegistrarSaida = () => {
   const validarFormulario = () => {
     const novosErros = {};
     const nome = form.NOME.trim();
-    const descricao = form.DESCRICAO.trim();
     const valor = form.VALOR;
 
     if (!nome) {
-      novosErros.NOME = 'O campo "Nome" é obrigatório.';
-    } else if (/\d/.test(nome)) {
-      novosErros.NOME = 'O nome não pode conter números.';
-    }
-
-    if (!descricao) {
-      novosErros.DESCRICAO = 'O campo "Descrição" é obrigatório.';
+      novosErros.NOME = 'Selecione um fornecedor.';
     }
 
     if (valor === '') {
@@ -52,12 +46,24 @@ const RegistrarSaida = () => {
     return Object.keys(novosErros).length === 0;
   };
 
+  const carregarFornecedores = async () => {
+    try {
+      const response = await fetch(`${URL}/fornecedor`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setFornecedores(data);
+      }
+    } catch (error) {
+      console.error("Erro ao carregar fornecedores:", error);
+    }
+  };
+
   const carregarSaidas = async () => {
     try {
       const response = await fetch(`${URL}/saida/dia`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` }
       });
       if (response.ok) {
         const data = await response.json();
@@ -70,6 +76,7 @@ const RegistrarSaida = () => {
 
   useEffect(() => {
     carregarSaidas();
+    carregarFornecedores();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -93,7 +100,7 @@ const RegistrarSaida = () => {
         },
         body: JSON.stringify({
           nome: form.NOME.trim(),
-          descricao: form.DESCRICAO.trim(),
+          descricao: form.DESCRICAO.trim() || null,
           valor: parseFloat(form.VALOR),
         }),
       });
@@ -141,13 +148,20 @@ const RegistrarSaida = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.row}>
           <div className={styles.inputGroup}>
-            <InputField
-              label="Nome"
+            <label className={styles.label} >Fornecedor</label>
+            <select
               name="NOME"
               value={form.NOME}
+              className={styles.option}
               onChange={handleChange}
-              placeholder="Fornecedor"
-            />
+            >
+              <option value="">Selecione</option>
+              {fornecedores.map((f) => (
+                <option key={f.ID} value={f.NOME}>
+                  {f.NOME}
+                </option>
+              ))}
+            </select>
             {erros.NOME && <p className={styles.erro}>{erros.NOME}</p>}
           </div>
 
@@ -169,9 +183,9 @@ const RegistrarSaida = () => {
             name="DESCRICAO"
             value={form.DESCRICAO}
             onChange={handleChange}
-            placeholder="Descrição do gasto"
+            placeholder="Descrição do gasto (opcional)"
           />
-          {erros.DESCRICAO && <p className={styles.erro}>{erros.DESCRICAO}</p>}
+          {/* descrição agora não é obrigatória */}
         </div>
 
         <Button type="submit">REGISTRAR</Button>
