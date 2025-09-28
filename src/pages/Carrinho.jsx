@@ -180,6 +180,51 @@ const Carrinho = () => {
         newProdutos[index][field] = value;
         setProdutosSaida(newProdutos);
     };
+    const atualizarQuantidade = async (produto, novaQuantidade) => {
+        if (!idSaidaAtual) return;
+
+        try {
+            const response = await fetch(`${URL}/carrinho/${idSaidaAtual}/produto/quantidade`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ produto, novaQuantidade }),
+            });
+
+            if (response.ok) {
+                buscarRetorno(); // atualizar lista
+            }
+        } catch (err) {
+            console.error("Erro ao atualizar quantidade:", err.message);
+        }
+    };
+
+    const removerProduto = async (produto) => {
+        if (!idSaidaAtual) return;
+
+        const confirmar = window.confirm(`Deseja remover o produto ${produto}?`);
+        if (!confirmar) return;
+
+        try {
+            const response = await fetch(`${URL}/carrinho/${idSaidaAtual}/produto`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ produto }),
+            });
+
+            if (response.ok) {
+                buscarRetorno();
+            }
+        } catch (err) {
+            console.error("Erro ao remover produto:", err.message);
+        }
+    };
+
 
     const handleChangeProdutoSaida = (index, value) => {
         const produtoSelecionado = produtosDisponiveis.find(p => p.NOME === value);
@@ -312,14 +357,33 @@ const Carrinho = () => {
                             {retornos.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.produto}</td>
-                                    <td>{item.quantidade_saida}</td>
+                                    <td>
+                                        <input
+                                            type="number"
+                                            value={item.quantidade_saida}
+                                            onChange={(e) => atualizarQuantidade(item.produto, e.target.value)}
+                                            style={{ width: "60px" }}
+                                        />
+                                    </td>
                                     <td>{item.quantidade_retorno}</td>
                                     <td>{item.quantidade_vendida}</td>
                                     <td>R$ {Number(item.valor_unidade).toFixed(2)}</td>
                                     <td>R$ {Number(item.total_unidade).toFixed(2)}</td>
+                                    <td>
+                                        <div style={{ display: "flex", gap: "8px" }}>
+                                            <button
+                                                className={styles.deleteButton}
+                                                onClick={() => removerProduto(item.produto)}
+                                            >
+                                                🗑️ Deletar
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
+
+
                     </table>
                 </div>
             ) : (
