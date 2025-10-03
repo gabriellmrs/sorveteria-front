@@ -21,6 +21,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import SolicitarCodigo from './pages/SolicitarCodigo';
 import RedefinirSenha from './pages/RedefinirSenha'; 
 import TotaisMes from './pages/TotaisMes';
+import ImprimirRecibo from './pages/ImprimirRecibo';
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function AppContent() {
             <Route path="/consultar/atacado" element={<ConsultarVendaAtacado />} />
             <Route path="/vendedores/:nome" element={<Carrinho />} />
             <Route path="/consultar/visao-geral" element={<TotaisMes />} />
+            <Route path="/imprimir" element={<ImprimirRecibo />} />
           </Route>
         </Routes>
       </div>  

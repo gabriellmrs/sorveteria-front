@@ -1,0 +1,264 @@
+/* ImprimirRecibo.module.css */
+.wrapper {
+  padding: 18px;
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+}
+
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3b82f6;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  align-self: flex-start;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Form area */
+.formArea {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
+}
+
+.autocomplete {
+  position: relative;
+  max-width: 420px;
+  margin-bottom: 12px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d5dbe7;
+  font-size: 14px;
+}
+
+.sugestoes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 40;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+  padding: 6px 0;
+}
+
+.sugestoes li {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.sugestoes li:hover { background: #f5f8ff; }
+
+/* itens */
+.itensHeader {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.smallButton {
+  padding: 8px 12px;
+  background: linear-gradient(135deg,#2d8cf0,#1c6ed3);
+  color:white;
+  border:none;
+  border-radius: 8px;
+  cursor:pointer;
+}
+
+.itensTableWrapper {
+  overflow-x: auto;
+}
+
+.itensTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 8px;
+}
+.itensTable th, .itensTable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+.qtdInput { width: 62px; padding:6px 8px; border-radius:6px; }
+.valorInput { width: 110px; padding:6px 8px; border-radius:6px; }
+.prodSelect { padding:6px 8px; border-radius:6px; }
+
+/* summary */
+.summaryRow {
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 12px;
+}
+.checkboxRow { margin-top: 8px; font-size: 14px; }
+.valuesBox { text-align: right; min-width: 220px; }
+
+.totalFinal { margin-top: 8px; font-size: 18px; color: #0b6b3a; font-weight: 700; }
+.primary {
+  margin-top: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg,#2d8cf0,#1c6ed3);
+  color: white;
+  cursor: pointer;
+}
+
+/* print area */
+.printArea {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* receipt card */
+.receipt {
+  width: 720px;
+  background: white;
+  padding: 12px;
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.logo {
+  width: 90px;
+  height: 70px;
+  background: linear-gradient(135deg,#ffd27a,#ff9a76);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+}
+.company { font-size: 12px; text-align:center; }
+.meta { font-size: 12px; text-align:left; }
+
+/* table inside receipt */
+.printTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+.printTable th, .printTable td {
+  border: 1px solid #cfcfcf;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+.printTable th { background: #f0f6ff; font-weight: 700; }
+
+/* footer area (signature and totals) */
+.footer {
+  display:flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 12px;
+}
+.signatureBox {
+  flex: 1.8;
+  text-align: center;
+  font-size: 12px;
+}
+.signatureLine {
+  margin-top: 22px;
+  border-top: 1px solid #888;
+  height: 36px;
+}
+.totalsBox {
+  flex: 1;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.totalsBox div { display:flex; justify-content: space-between; }
+
+.minDelete {
+  background: transparent;
+  border: 1px solid #e04b4b;
+  color: #e04b4b;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* === Print rules === */
+@page {
+  size: A4 portrait;
+  margin: 0; /* remove qualquer margem padrão da página */
+}
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+  .printArea, .printArea * {
+    visibility: visible;
+  }
+
+  .printArea {
+    position: fixed;
+    left: 0;
+    top: 13px;        /* começa no início da folha */
+    width: 100%;
+    margin: 0;     /* remove margem extra */
+    padding: 0;    /* garante que não empurre pra baixo */
+    display: flex;
+    justify-content: center;
+    gap: 19px;
+  }
+
+  .receipt {
+    box-shadow: none;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 690px; /* largura segura para A4 */
+    margin: 0 auto;
+    page-break-inside: avoid;
+  }
+}
+
+/* Só renderiza a segunda cópia se marcado */
+[data-duascopias="false"] .receipt:nth-child(2) {
+  display: none !important;
+}
+
+
+
+/* responsividade */
+@media (max-width: 900px) {
+  .receipt { width: 100%; }
+  .printArea { flex-direction: column; }
+}
+
+.logo img {
+    margin-left: 15px;
+  max-width: 120px;
+  height: auto;
+}

@@ -146,10 +146,6 @@ input,
   background-color: #f9fafb;
 }
 
-.tabela tr:hover {
-  background-color: #f1f5f9;
-  transition: background 0.2s ease-in-out;
-}
 
 .tabela td {
   white-space: nowrap;
